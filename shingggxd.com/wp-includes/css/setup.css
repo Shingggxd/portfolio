@@ -1,0 +1,79 @@
+body{
+    width: 100%;
+    height: 100%;
+}
+.drawer_hidden{
+    display: none;
+}
+.drawer_open{
+    height: 60px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 888;
+    cursor: pointer;
+}
+.drawer_open span,
+.drawer_open span:before,
+.drawer_open span:after{
+    content: '';
+    display: block;
+    width: 25px;
+    height: 3px;
+    transition: 0.5s;
+    position: absolute;
+    background: rgb(0, 0, 0);
+}
+.drawer_open span:before{
+    bottom: 8px;
+}
+.drawer_open span:after{
+    top: 8px;
+}
+#drawer_input:checked ~ .drawer_open span{
+    background: rgba(255, 255, 255, 0);
+}
+#drawer_input:checked ~ .drawer_open span::before{
+    bottom: 0;
+    transform: rotate(45deg);
+}
+#drawer_input:checked ~ .drawer_open span::after{
+    top: 0;
+    transform: rotate(-45deg);
+}
+#drawer_input:checked ~ .nav_content{
+    opacity: 1;
+    pointer-events: auto;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+
+/*以下、アニメーションの設定*/
+
+
+@keyframes moveInAnime{
+    from{
+        transform: translateX(0%);
+    }
+    to{
+        transform: translateX(15%);
+    }
+}
+
+@keyframes moveOutAnime{
+    from{
+        transform: translateX(15%);
+    }
+    to{
+        transform: translateX(0%);
+    }
+}
+.drawer_open_animation{
+    animation-name: moveInAnime;
+}
+.drawer_close_animation{
+    animation-name: moveOutAnime;
+}
